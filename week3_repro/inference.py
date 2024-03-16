@@ -7,6 +7,7 @@ from nltk import sent_tokenize
 from prompt_generate import read_jsonl
 
 import json
+import random
 from collections import deque
 
 import nltk
@@ -14,7 +15,6 @@ import nltk
 nltk.download('punkt')
 
 # OpenAI API 키 설정
-openai.api_key = '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'
 
 def inference_iter(question):
 
@@ -29,13 +29,12 @@ def inference_iter(question):
     output = response['choices'][0]['message']['content']
     cot = sent_tokenize(output)[0]
 
-    print(cot)
+    print("Chain of Thought: ", cot)
     return cot
 
 def process_queue(queue):
     ret = ""
-    while queue:
-        item = queue.popleft()
+    for item in queue:
         ret += item
         
     return ret
@@ -49,11 +48,17 @@ if __name__ == "__main__":
     # dev.jsonl 파일 경로
     dev_file_path = "processed_data/hotpotqa/dev.jsonl"
 
-    # dev.jsonl 파일에서 첫 번째 요소 가져오기
-    test_example = read_jsonl(dev_file_path)[2]
-    test_question = "Q: Answer the following question by reasoning step-by-step. " + test_example['question_text']
+    #test_example = read_jsonl(dev_file_path)[2]
+    test_example = random.choice(read_jsonl(dev_file_path))
+
+    #test_question = "Q: Answer the following question by reasoning step-by-step. " + test_example['question_text']
+    test_question = "Q: " + test_example['question_text']
     
+    test_answer = "A: " + test_example['answer']
+
     print(test_question)
+    inference_iter(test_question)
+    print(test_answer)
     
     query = prompts + '\n' + test_question + '\n'
     q_index = len(prompts)
@@ -61,8 +66,11 @@ if __name__ == "__main__":
 
     collected_cot = []
     collected_paragraph = deque(maxlen=15)
+    
     iter_num = 0
-    while "answer is:" not in cot and iter_num < 8:
+    max_iter = 3
+    
+    while test_example['answer'].lower() not in cot.lower() and iter_num < max_iter:
         if cot != "":
             retrieved_result  = wiki_retrieval(cot)
         else:
@@ -72,9 +80,13 @@ if __name__ == "__main__":
         
         for paragraph, title in zip(retrieved_paragraph, retrieved_title):
             retrieved = "Wikipedia Title: " + title + "\n" + paragraph + "\n\n"
-            collected_paragraph.append(retrieved)  # Add retrieved paragraph to collected_paragraph
-
+            if retrieved not in collected_paragraph:
+                collected_paragraph.append(retrieved) 
+            
         retrieved_prompt = process_queue(collected_paragraph)
+        print("-------------------------------------")
+        print(retrieved_prompt)
+        print("-------------------------------------")
         query = query[:q_index] + retrieved_prompt + query[q_index:] + 'A: ' + cot
 
         cot = inference_iter(query)
@@ -87,6 +99,10 @@ if __name__ == "__main__":
         final_cot += c
         
     final_query = process_queue(collected_paragraph) + "Q: " + test_example['question_text']
+
+    print("Final Query: ")
+    print("\n\n")
+    print(final_query, "\n\n")
     
     output = inference_iter(final_query)
     
@@ -96,5 +112,3 @@ if __name__ == "__main__":
         ret = answer
     else:
         ret = output
-    
-    print(ret)
