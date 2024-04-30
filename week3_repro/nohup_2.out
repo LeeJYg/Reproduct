@@ -1,0 +1,2214 @@
+[nltk_data] Downloading package punkt to /home/jylee/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+You are using the default legacy behaviour of the <class 'transformers.models.t5.tokenization_t5.T5Tokenizer'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:03<00:13,  3.32s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:06<00:09,  3.28s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:09<00:06,  3.23s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:12<00:03,  3.19s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:14<00:00,  2.78s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:14<00:00,  2.98s/it]
+Token indices sequence length is longer than the specified maximum sequence length for this model (3896 > 512). Running this sequence through the model will result in indexing errors
+Iteration:  0
+Time: 11.476
+Average F1 Score: 0.000
+Average No Retrieval F1 Score: 0.000
+Average Recall: 0.000
+Iteration:  1
+Time: 7.507
+Average F1 Score: 0.400
+Average No Retrieval F1 Score: 0.000
+Average Recall: 0.500
+Iteration:  2
+Time: 7.605
+Average F1 Score: 0.552
+Average No Retrieval F1 Score: 0.000
+Average Recall: 0.667
+Iteration:  3
+Time: 3.651
+Average F1 Score: 0.629
+Average No Retrieval F1 Score: 0.200
+Average Recall: 0.750
+Iteration:  4
+Time: 11.629
+Average F1 Score: 0.603
+Average No Retrieval F1 Score: 0.160
+Average Recall: 0.700
+Iteration:  5
+Time: 11.182
+Average F1 Score: 0.613
+Average No Retrieval F1 Score: 0.133
+Average Recall: 0.750
+Iteration:  6
+Time: 3.872
+Average F1 Score: 0.648
+Average No Retrieval F1 Score: 0.114
+Average Recall: 0.714
+Iteration:  7
+Time: 9.940
+Average F1 Score: 0.567
+Average No Retrieval F1 Score: 0.100
+Average Recall: 0.625
+Iteration:  8
+Time: 11.474
+Average F1 Score: 0.504
+Average No Retrieval F1 Score: 0.089
+Average Recall: 0.556
+Iteration:  9
+Time: 9.991
+Average F1 Score: 0.520
+Average No Retrieval F1 Score: 0.080
+Average Recall: 0.600
+Iteration:  10
+Time: 3.508
+Average F1 Score: 0.546
+Average No Retrieval F1 Score: 0.073
+Average Recall: 0.636
+Iteration:  11
+Time: 11.464
+Average F1 Score: 0.500
+Average No Retrieval F1 Score: 0.067
+Average Recall: 0.625
+Iteration:  12
+Time: 3.685
+Average F1 Score: 0.513
+Average No Retrieval F1 Score: 0.062
+Average Recall: 0.615
+Iteration:  13
+Time: 3.505
+Average F1 Score: 0.541
+Average No Retrieval F1 Score: 0.089
+Average Recall: 0.607
+Iteration:  14
+Time: 10.456
+Average F1 Score: 0.505
+Average No Retrieval F1 Score: 0.083
+Average Recall: 0.567
+Iteration:  15
+Time: 11.712
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.078
+Average Recall: 0.531
+Iteration:  16
+Time: 11.012
+Average F1 Score: 0.461
+Average No Retrieval F1 Score: 0.073
+Average Recall: 0.529
+Iteration:  17
+Time: 3.523
+Average F1 Score: 0.472
+Average No Retrieval F1 Score: 0.069
+Average Recall: 0.528
+Iteration:  18
+Time: 9.829
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.065
+Average Recall: 0.526
+Iteration:  19
+Time: 3.911
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.062
+Average Recall: 0.550
+Iteration:  20
+Time: 3.467
+Average F1 Score: 0.508
+Average No Retrieval F1 Score: 0.059
+Average Recall: 0.548
+Iteration:  21
+Time: 3.541
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.057
+Average Recall: 0.545
+Iteration:  22
+Time: 10.502
+Average F1 Score: 0.464
+Average No Retrieval F1 Score: 0.054
+Average Recall: 0.543
+Iteration:  23
+Time: 7.566
+Average F1 Score: 0.456
+Average No Retrieval F1 Score: 0.052
+Average Recall: 0.562
+Iteration:  24
+Time: 3.942
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.050
+Average Recall: 0.560
+Iteration:  25
+Time: 3.286
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.048
+Average Recall: 0.577
+Iteration:  26
+Time: 9.605
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.083
+Average Recall: 0.593
+Iteration:  27
+Time: 3.639
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.116
+Average Recall: 0.607
+Iteration:  28
+Time: 10.277
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.112
+Average Recall: 0.586
+Iteration:  29
+Time: 10.730
+Average F1 Score: 0.457
+Average No Retrieval F1 Score: 0.108
+Average Recall: 0.567
+Iteration:  30
+Time: 11.519
+Average F1 Score: 0.443
+Average No Retrieval F1 Score: 0.105
+Average Recall: 0.548
+Iteration:  31
+Time: 9.970
+Average F1 Score: 0.429
+Average No Retrieval F1 Score: 0.101
+Average Recall: 0.531
+Iteration:  32
+Time: 3.888
+Average F1 Score: 0.442
+Average No Retrieval F1 Score: 0.129
+Average Recall: 0.545
+Iteration:  33
+Time: 10.412
+Average F1 Score: 0.441
+Average No Retrieval F1 Score: 0.154
+Average Recall: 0.559
+Iteration:  34
+Time: 3.096
+Average F1 Score: 0.447
+Average No Retrieval F1 Score: 0.150
+Average Recall: 0.571
+Iteration:  35
+Time: 10.544
+Average F1 Score: 0.435
+Average No Retrieval F1 Score: 0.146
+Average Recall: 0.569
+Iteration:  36
+Time: 8.203
+Average F1 Score: 0.438
+Average No Retrieval F1 Score: 0.142
+Average Recall: 0.568
+Iteration:  37
+Time: 71.022
+Average F1 Score: 0.444
+Average No Retrieval F1 Score: 0.138
+Average Recall: 0.566
+Iteration:  38
+Time: 3.930
+Average F1 Score: 0.449
+Average No Retrieval F1 Score: 0.160
+Average Recall: 0.577
+Iteration:  39
+Time: 10.861
+Average F1 Score: 0.452
+Average No Retrieval F1 Score: 0.156
+Average Recall: 0.575
+Iteration:  40
+Time: 11.223
+Average F1 Score: 0.448
+Average No Retrieval F1 Score: 0.177
+Average Recall: 0.573
+Iteration:  41
+Time: 10.603
+Average F1 Score: 0.458
+Average No Retrieval F1 Score: 0.172
+Average Recall: 0.560
+Iteration:  42
+Time: 11.388
+Average F1 Score: 0.447
+Average No Retrieval F1 Score: 0.168
+Average Recall: 0.547
+Iteration:  43
+Time: 3.889
+Average F1 Score: 0.457
+Average No Retrieval F1 Score: 0.172
+Average Recall: 0.557
+Iteration:  44
+Time: 3.248
+Average F1 Score: 0.461
+Average No Retrieval F1 Score: 0.191
+Average Recall: 0.567
+Iteration:  45
+Time: 4.051
+Average F1 Score: 0.466
+Average No Retrieval F1 Score: 0.186
+Average Recall: 0.576
+Iteration:  46
+Time: 3.400
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.204
+Average Recall: 0.585
+Iteration:  47
+Time: 3.288
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.220
+Average Recall: 0.583
+Iteration:  48
+Time: 10.364
+Average F1 Score: 0.465
+Average No Retrieval F1 Score: 0.216
+Average Recall: 0.571
+Iteration:  49
+Time: 3.692
+Average F1 Score: 0.472
+Average No Retrieval F1 Score: 0.232
+Average Recall: 0.580
+Iteration:  50
+Time: 3.835
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.247
+Average Recall: 0.578
+Iteration:  51
+Time: 3.669
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.250
+Average Recall: 0.587
+Iteration:  52
+Time: 10.712
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.264
+Average Recall: 0.575
+Iteration:  53
+Time: 3.274
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.259
+Average Recall: 0.574
+Iteration:  54
+Time: 11.624
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.266
+Average Recall: 0.573
+Iteration:  55
+Time: 10.259
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.262
+Average Recall: 0.562
+Iteration:  56
+Time: 3.274
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.561
+Iteration:  57
+Time: 3.777
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.569
+Iteration:  58
+Time: 7.874
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.265
+Average Recall: 0.568
+Iteration:  59
+Time: 3.801
+Average F1 Score: 0.496
+Average No Retrieval F1 Score: 0.261
+Average Recall: 0.575
+Iteration:  60
+Time: 12.356
+Average F1 Score: 0.498
+Average No Retrieval F1 Score: 0.262
+Average Recall: 0.574
+Iteration:  61
+Time: 3.540
+Average F1 Score: 0.503
+Average No Retrieval F1 Score: 0.258
+Average Recall: 0.573
+Iteration:  62
+Time: 3.505
+Average F1 Score: 0.508
+Average No Retrieval F1 Score: 0.259
+Average Recall: 0.579
+Iteration:  63
+Time: 3.675
+Average F1 Score: 0.514
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.586
+Iteration:  64
+Time: 7.346
+Average F1 Score: 0.512
+Average No Retrieval F1 Score: 0.266
+Average Recall: 0.585
+Iteration:  65
+Time: 10.763
+Average F1 Score: 0.510
+Average No Retrieval F1 Score: 0.262
+Average Recall: 0.583
+Iteration:  66
+Time: 11.161
+Average F1 Score: 0.502
+Average No Retrieval F1 Score: 0.258
+Average Recall: 0.575
+Iteration:  67
+Time: 3.858
+Average F1 Score: 0.505
+Average No Retrieval F1 Score: 0.255
+Average Recall: 0.574
+Iteration:  68
+Time: 3.530
+Average F1 Score: 0.509
+Average No Retrieval F1 Score: 0.265
+Average Recall: 0.580
+Iteration:  69
+Time: 11.645
+Average F1 Score: 0.511
+Average No Retrieval F1 Score: 0.269
+Average Recall: 0.579
+Iteration:  70
+Time: 9.623
+Average F1 Score: 0.504
+Average No Retrieval F1 Score: 0.266
+Average Recall: 0.570
+Iteration:  71
+Time: 9.946
+Average F1 Score: 0.497
+Average No Retrieval F1 Score: 0.262
+Average Recall: 0.562
+Iteration:  72
+Time: 3.532
+Average F1 Score: 0.497
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.568
+Iteration:  73
+Time: 3.309
+Average F1 Score: 0.500
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.574
+Iteration:  74
+Time: 3.809
+Average F1 Score: 0.504
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.573
+Iteration:  75
+Time: 6.620
+Average F1 Score: 0.497
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.572
+Iteration:  76
+Time: 10.530
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.578
+Iteration:  77
+Time: 9.991
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.267
+Average Recall: 0.577
+Iteration:  78
+Time: 3.437
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.582
+Iteration:  79
+Time: 3.969
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.581
+Iteration:  80
+Time: 4.226
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.580
+Iteration:  81
+Time: 3.348
+Average F1 Score: 0.495
+Average No Retrieval F1 Score: 0.281
+Average Recall: 0.585
+Iteration:  82
+Time: 6.933
+Average F1 Score: 0.495
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.584
+Iteration:  83
+Time: 10.401
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.286
+Average Recall: 0.583
+Iteration:  84
+Time: 7.847
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.588
+Iteration:  85
+Time: 10.542
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.287
+Average Recall: 0.581
+Iteration:  86
+Time: 3.339
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.586
+Iteration:  87
+Time: 10.445
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.292
+Average Recall: 0.591
+Iteration:  88
+Time: 10.301
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.289
+Average Recall: 0.590
+Iteration:  89
+Time: 10.877
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.293
+Average Recall: 0.583
+Iteration:  90
+Time: 3.809
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.290
+Average Recall: 0.582
+Iteration:  91
+Time: 11.173
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.297
+Average Recall: 0.582
+Iteration:  92
+Time: 9.895
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.294
+Average Recall: 0.575
+Iteration:  93
+Time: 3.419
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.574
+Iteration:  94
+Time: 3.442
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.309
+Average Recall: 0.574
+Iteration:  95
+Time: 10.846
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.306
+Average Recall: 0.568
+Iteration:  96
+Time: 3.673
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.313
+Average Recall: 0.567
+Iteration:  97
+Time: 11.107
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.571
+Iteration:  98
+Time: 3.923
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.576
+Iteration:  99
+Time: 11.689
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.314
+Average Recall: 0.580
+Iteration:  100
+Time: 3.980
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.314
+Average Recall: 0.584
+Iteration:  101
+Time: 10.541
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.311
+Average Recall: 0.588
+Iteration:  102
+Time: 10.924
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.308
+Average Recall: 0.592
+Iteration:  103
+Time: 3.549
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.596
+Iteration:  104
+Time: 3.693
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.600
+Iteration:  105
+Time: 11.115
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.299
+Average Recall: 0.604
+Iteration:  106
+Time: 9.566
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.598
+Iteration:  107
+Time: 11.972
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.597
+Iteration:  108
+Time: 11.291
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.293
+Average Recall: 0.601
+Iteration:  109
+Time: 10.122
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.600
+Iteration:  110
+Time: 11.271
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.297
+Average Recall: 0.604
+Iteration:  111
+Time: 3.709
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.603
+Iteration:  112
+Time: 11.449
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.298
+Average Recall: 0.606
+Iteration:  113
+Time: 11.516
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.605
+Iteration:  114
+Time: 10.448
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.293
+Average Recall: 0.600
+Iteration:  115
+Time: 10.016
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.290
+Average Recall: 0.603
+Iteration:  116
+Time: 10.242
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.288
+Average Recall: 0.607
+Iteration:  117
+Time: 3.422
+Average F1 Score: 0.472
+Average No Retrieval F1 Score: 0.285
+Average Recall: 0.606
+Iteration:  118
+Time: 7.441
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.291
+Average Recall: 0.609
+Iteration:  119
+Time: 4.012
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.289
+Average Recall: 0.608
+Iteration:  120
+Time: 3.367
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.607
+Iteration:  121
+Time: 10.320
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.292
+Average Recall: 0.607
+Iteration:  122
+Time: 11.370
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.290
+Average Recall: 0.606
+Iteration:  123
+Time: 3.304
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.609
+Iteration:  124
+Time: 9.574
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.608
+Iteration:  125
+Time: 10.305
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.299
+Average Recall: 0.603
+Iteration:  126
+Time: 4.021
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.602
+Iteration:  127
+Time: 10.827
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.298
+Average Recall: 0.598
+Iteration:  128
+Time: 10.213
+Average F1 Score: 0.471
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.601
+Iteration:  129
+Time: 10.622
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.596
+Iteration:  130
+Time: 3.907
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.293
+Average Recall: 0.599
+Iteration:  131
+Time: 3.473
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.290
+Average Recall: 0.598
+Iteration:  132
+Time: 4.103
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.292
+Average Recall: 0.598
+Iteration:  133
+Time: 10.933
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.290
+Average Recall: 0.597
+Iteration:  134
+Time: 9.949
+Average F1 Score: 0.471
+Average No Retrieval F1 Score: 0.288
+Average Recall: 0.593
+Iteration:  135
+Time: 3.498
+Average F1 Score: 0.472
+Average No Retrieval F1 Score: 0.293
+Average Recall: 0.596
+Iteration:  136
+Time: 8.017
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.291
+Average Recall: 0.599
+Iteration:  137
+Time: 10.095
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.294
+Average Recall: 0.598
+Iteration:  138
+Time: 3.371
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.291
+Average Recall: 0.597
+Iteration:  139
+Time: 3.843
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.600
+Iteration:  140
+Time: 3.421
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.599
+Iteration:  141
+Time: 10.088
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.599
+Iteration:  142
+Time: 7.960
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.598
+Iteration:  143
+Time: 3.807
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.298
+Average Recall: 0.601
+Iteration:  144
+Time: 3.393
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.603
+Iteration:  145
+Time: 10.223
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.599
+Iteration:  146
+Time: 3.609
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.599
+Iteration:  147
+Time: 10.346
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.598
+Iteration:  148
+Time: 11.159
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.594
+Iteration:  149
+Time: 3.442
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.593
+Iteration:  150
+Time: 3.308
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.596
+Iteration:  151
+Time: 11.732
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.595
+Iteration:  152
+Time: 3.850
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.595
+Iteration:  153
+Time: 9.598
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.309
+Average Recall: 0.591
+Iteration:  154
+Time: 3.351
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.314
+Average Recall: 0.594
+Iteration:  155
+Time: 11.153
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.312
+Average Recall: 0.593
+Iteration:  156
+Time: 3.281
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.596
+Iteration:  157
+Time: 10.065
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.308
+Average Recall: 0.598
+Iteration:  158
+Time: 11.369
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.306
+Average Recall: 0.601
+Iteration:  159
+Time: 10.213
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.597
+Iteration:  160
+Time: 9.808
+Average F1 Score: 0.470
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.596
+Iteration:  161
+Time: 3.870
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.599
+Iteration:  162
+Time: 3.416
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.595
+Iteration:  163
+Time: 3.770
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.299
+Average Recall: 0.598
+Iteration:  164
+Time: 10.191
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.297
+Average Recall: 0.600
+Iteration:  165
+Time: 3.591
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.602
+Iteration:  166
+Time: 10.378
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.294
+Average Recall: 0.599
+Iteration:  167
+Time: 9.858
+Average F1 Score: 0.472
+Average No Retrieval F1 Score: 0.292
+Average Recall: 0.598
+Iteration:  168
+Time: 3.167
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.601
+Iteration:  169
+Time: 11.539
+Average F1 Score: 0.471
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.600
+Iteration:  170
+Time: 9.843
+Average F1 Score: 0.471
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.602
+Iteration:  171
+Time: 10.401
+Average F1 Score: 0.473
+Average No Retrieval F1 Score: 0.298
+Average Recall: 0.602
+Iteration:  172
+Time: 4.524
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.604
+Iteration:  173
+Time: 3.220
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.306
+Average Recall: 0.606
+Iteration:  174
+Time: 8.131
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.606
+Iteration:  175
+Time: 10.539
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.306
+Average Recall: 0.608
+Iteration:  176
+Time: 3.983
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.607
+Iteration:  177
+Time: 10.035
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.607
+Iteration:  178
+Time: 3.674
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.606
+Iteration:  179
+Time: 3.569
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.608
+Iteration:  180
+Time: 3.225
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.308
+Average Recall: 0.610
+Iteration:  181
+Time: 10.232
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.613
+Iteration:  182
+Time: 3.800
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.612
+Iteration:  183
+Time: 10.882
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.611
+Iteration:  184
+Time: 4.256
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.614
+Iteration:  185
+Time: 10.150
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.616
+Iteration:  186
+Time: 10.162
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.612
+Iteration:  187
+Time: 3.552
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.609
+Iteration:  188
+Time: 13.035
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.608
+Iteration:  189
+Time: 3.455
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.608
+Iteration:  190
+Time: 3.452
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.607
+Iteration:  191
+Time: 10.993
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.604
+Iteration:  192
+Time: 7.463
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.606
+Iteration:  193
+Time: 3.768
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.606
+Iteration:  194
+Time: 9.551
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.299
+Average Recall: 0.603
+Iteration:  195
+Time: 10.111
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.602
+Iteration:  196
+Time: 3.574
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.299
+Average Recall: 0.602
+Iteration:  197
+Time: 9.647
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.298
+Average Recall: 0.601
+Iteration:  198
+Time: 3.631
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.603
+Iteration:  199
+Time: 9.978
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.600
+Iteration:  200
+Time: 3.859
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.308
+Average Recall: 0.602
+Iteration:  201
+Time: 3.914
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.604
+Iteration:  202
+Time: 3.603
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.606
+Iteration:  203
+Time: 9.961
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.608
+Iteration:  204
+Time: 3.715
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.607
+Iteration:  205
+Time: 10.823
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.604
+Iteration:  206
+Time: 3.980
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.606
+Iteration:  207
+Time: 3.496
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.608
+Iteration:  208
+Time: 4.011
+Average F1 Score: 0.495
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.610
+Iteration:  209
+Time: 3.501
+Average F1 Score: 0.496
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.610
+Iteration:  210
+Time: 10.645
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.607
+Iteration:  211
+Time: 3.673
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.604
+Iteration:  212
+Time: 3.904
+Average F1 Score: 0.496
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.603
+Iteration:  213
+Time: 12.279
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.603
+Iteration:  214
+Time: 3.464
+Average F1 Score: 0.495
+Average No Retrieval F1 Score: 0.313
+Average Recall: 0.605
+Iteration:  215
+Time: 9.812
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.312
+Average Recall: 0.602
+Iteration:  216
+Time: 11.083
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.601
+Iteration:  217
+Time: 9.862
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.313
+Average Recall: 0.601
+Iteration:  218
+Time: 3.249
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.317
+Average Recall: 0.603
+Iteration:  219
+Time: 10.640
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.315
+Average Recall: 0.600
+Iteration:  220
+Time: 10.701
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.314
+Average Recall: 0.602
+Iteration:  221
+Time: 3.977
+Average F1 Score: 0.494
+Average No Retrieval F1 Score: 0.314
+Average Recall: 0.601
+Iteration:  222
+Time: 9.790
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.313
+Average Recall: 0.599
+Iteration:  223
+Time: 10.402
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.312
+Average Recall: 0.596
+Iteration:  224
+Time: 11.162
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.593
+Iteration:  225
+Time: 11.220
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.310
+Average Recall: 0.591
+Iteration:  226
+Time: 10.371
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.309
+Average Recall: 0.588
+Iteration:  227
+Time: 3.498
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.590
+Iteration:  228
+Time: 11.133
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.309
+Average Recall: 0.587
+Iteration:  229
+Time: 10.507
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.585
+Iteration:  230
+Time: 11.788
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.308
+Average Recall: 0.584
+Iteration:  231
+Time: 3.466
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.307
+Average Recall: 0.584
+Iteration:  232
+Time: 11.229
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.584
+Iteration:  233
+Time: 10.763
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.583
+Iteration:  234
+Time: 3.860
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.583
+Iteration:  235
+Time: 3.562
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.306
+Average Recall: 0.583
+Iteration:  236
+Time: 4.066
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.584
+Iteration:  237
+Time: 9.984
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.582
+Iteration:  238
+Time: 10.135
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.306
+Average Recall: 0.579
+Iteration:  239
+Time: 10.852
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.581
+Iteration:  240
+Time: 3.819
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.581
+Iteration:  241
+Time: 8.037
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.305
+Average Recall: 0.581
+Iteration:  242
+Time: 4.787
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.304
+Average Recall: 0.582
+Iteration:  243
+Time: 10.779
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.582
+Iteration:  244
+Time: 9.799
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.580
+Iteration:  245
+Time: 3.279
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.300
+Average Recall: 0.581
+Iteration:  246
+Time: 3.614
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.583
+Iteration:  247
+Time: 3.428
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.303
+Average Recall: 0.583
+Iteration:  248
+Time: 11.403
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.302
+Average Recall: 0.582
+Iteration:  249
+Time: 3.903
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.301
+Average Recall: 0.584
+Iteration:  250
+Time: 3.558
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.299
+Average Recall: 0.586
+Iteration:  251
+Time: 3.860
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.298
+Average Recall: 0.585
+Iteration:  252
+Time: 10.081
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.297
+Average Recall: 0.583
+Iteration:  253
+Time: 10.253
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.581
+Iteration:  254
+Time: 11.274
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.582
+Iteration:  255
+Time: 11.516
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.294
+Average Recall: 0.580
+Iteration:  256
+Time: 4.188
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.296
+Average Recall: 0.582
+Iteration:  257
+Time: 10.357
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.295
+Average Recall: 0.583
+Iteration:  258
+Time: 11.273
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.294
+Average Recall: 0.581
+Iteration:  259
+Time: 11.245
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.293
+Average Recall: 0.583
+Iteration:  260
+Time: 10.025
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.292
+Average Recall: 0.584
+Iteration:  261
+Time: 10.695
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.291
+Average Recall: 0.584
+Iteration:  262
+Time: 11.790
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.290
+Average Recall: 0.584
+Iteration:  263
+Time: 10.710
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.289
+Average Recall: 0.581
+Iteration:  264
+Time: 3.477
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.287
+Average Recall: 0.583
+Iteration:  265
+Time: 7.724
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.286
+Average Recall: 0.585
+Iteration:  266
+Time: 3.618
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.285
+Average Recall: 0.586
+Iteration:  267
+Time: 11.468
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.584
+Iteration:  268
+Time: 7.681
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.285
+Average Recall: 0.586
+Iteration:  269
+Time: 9.877
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.585
+Iteration:  270
+Time: 3.806
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.585
+Iteration:  271
+Time: 9.824
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.585
+Iteration:  272
+Time: 3.818
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.584
+Iteration:  273
+Time: 11.794
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.582
+Iteration:  274
+Time: 3.703
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.286
+Average Recall: 0.582
+Iteration:  275
+Time: 7.433
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.286
+Average Recall: 0.583
+Iteration:  276
+Time: 3.566
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.288
+Average Recall: 0.585
+Iteration:  277
+Time: 10.229
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.286
+Average Recall: 0.586
+Iteration:  278
+Time: 10.619
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.285
+Average Recall: 0.584
+Iteration:  279
+Time: 10.558
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.582
+Iteration:  280
+Time: 12.235
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.582
+Iteration:  281
+Time: 11.549
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.580
+Iteration:  282
+Time: 10.998
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.281
+Average Recall: 0.578
+Iteration:  283
+Time: 9.835
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.280
+Average Recall: 0.577
+Iteration:  284
+Time: 7.085
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.577
+Iteration:  285
+Time: 3.572
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.579
+Iteration:  286
+Time: 7.286
+Average F1 Score: 0.474
+Average No Retrieval F1 Score: 0.281
+Average Recall: 0.578
+Iteration:  287
+Time: 10.121
+Average F1 Score: 0.475
+Average No Retrieval F1 Score: 0.280
+Average Recall: 0.580
+Iteration:  288
+Time: 10.492
+Average F1 Score: 0.476
+Average No Retrieval F1 Score: 0.279
+Average Recall: 0.581
+Iteration:  289
+Time: 3.818
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.581
+Iteration:  290
+Time: 7.016
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.581
+Iteration:  291
+Time: 3.863
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.580
+Iteration:  292
+Time: 11.223
+Average F1 Score: 0.477
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.580
+Iteration:  293
+Time: 11.898
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.582
+Iteration:  294
+Time: 3.484
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.287
+Average Recall: 0.583
+Iteration:  295
+Time: 10.105
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.289
+Average Recall: 0.583
+Iteration:  296
+Time: 11.736
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.288
+Average Recall: 0.584
+Iteration:  297
+Time: 3.879
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.287
+Average Recall: 0.586
+Iteration:  298
+Time: 13.017
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.287
+Average Recall: 0.584
+Iteration:  299
+Time: 6.898
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.286
+Average Recall: 0.585
+Iteration:  300
+Time: 10.638
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.285
+Average Recall: 0.583
+Iteration:  301
+Time: 3.708
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.584
+Iteration:  302
+Time: 3.855
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.586
+Iteration:  303
+Time: 7.273
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.587
+Iteration:  304
+Time: 10.761
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.281
+Average Recall: 0.587
+Iteration:  305
+Time: 3.774
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.284
+Average Recall: 0.587
+Iteration:  306
+Time: 10.677
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.283
+Average Recall: 0.585
+Iteration:  307
+Time: 10.768
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.583
+Iteration:  308
+Time: 3.803
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.282
+Average Recall: 0.583
+Iteration:  309
+Time: 10.950
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.281
+Average Recall: 0.581
+Iteration:  310
+Time: 3.417
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.280
+Average Recall: 0.582
+Iteration:  311
+Time: 9.852
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.279
+Average Recall: 0.583
+Iteration:  312
+Time: 10.936
+Average F1 Score: 0.478
+Average No Retrieval F1 Score: 0.279
+Average Recall: 0.581
+Iteration:  313
+Time: 3.532
+Average F1 Score: 0.479
+Average No Retrieval F1 Score: 0.281
+Average Recall: 0.583
+Iteration:  314
+Time: 3.848
+Average F1 Score: 0.480
+Average No Retrieval F1 Score: 0.280
+Average Recall: 0.584
+Iteration:  315
+Time: 3.474
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.279
+Average Recall: 0.585
+Iteration:  316
+Time: 11.898
+Average F1 Score: 0.481
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.584
+Iteration:  317
+Time: 8.894
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.583
+Iteration:  318
+Time: 3.864
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.585
+Iteration:  319
+Time: 3.876
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.584
+Iteration:  320
+Time: 3.805
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.584
+Iteration:  321
+Time: 10.952
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.584
+Iteration:  322
+Time: 3.842
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.585
+Iteration:  323
+Time: 3.244
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.585
+Iteration:  324
+Time: 10.529
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.585
+Iteration:  325
+Time: 4.003
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.584
+Iteration:  326
+Time: 11.306
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.586
+Iteration:  327
+Time: 4.008
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.587
+Iteration:  328
+Time: 11.885
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.585
+Iteration:  329
+Time: 10.590
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.585
+Iteration:  330
+Time: 11.789
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.583
+Iteration:  331
+Time: 11.441
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.583
+Iteration:  332
+Time: 9.556
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.581
+Iteration:  333
+Time: 3.671
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.581
+Iteration:  334
+Time: 3.702
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.581
+Iteration:  335
+Time: 10.686
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.579
+Iteration:  336
+Time: 3.248
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.580
+Iteration:  337
+Time: 3.495
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.580
+Iteration:  338
+Time: 3.498
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.580
+Iteration:  339
+Time: 3.930
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.579
+Iteration:  340
+Time: 3.734
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.579
+Iteration:  341
+Time: 3.567
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.580
+Iteration:  342
+Time: 11.939
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.582
+Iteration:  343
+Time: 10.647
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.581
+Iteration:  344
+Time: 3.685
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.581
+Iteration:  345
+Time: 3.474
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.582
+Iteration:  346
+Time: 10.455
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.581
+Iteration:  347
+Time: 10.604
+Average F1 Score: 0.493
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.582
+Iteration:  348
+Time: 10.390
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.580
+Iteration:  349
+Time: 11.214
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.269
+Average Recall: 0.579
+Iteration:  350
+Time: 3.613
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.269
+Average Recall: 0.578
+Iteration:  351
+Time: 9.698
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.269
+Average Recall: 0.580
+Iteration:  352
+Time: 3.538
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.269
+Average Recall: 0.579
+Iteration:  353
+Time: 10.160
+Average F1 Score: 0.490
+Average No Retrieval F1 Score: 0.268
+Average Recall: 0.578
+Iteration:  354
+Time: 11.910
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.268
+Average Recall: 0.577
+Iteration:  355
+Time: 3.598
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.267
+Average Recall: 0.579
+Iteration:  356
+Time: 10.964
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.266
+Average Recall: 0.577
+Iteration:  357
+Time: 4.318
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.265
+Average Recall: 0.577
+Iteration:  358
+Time: 11.023
+Average F1 Score: 0.492
+Average No Retrieval F1 Score: 0.266
+Average Recall: 0.578
+Iteration:  359
+Time: 7.192
+Average F1 Score: 0.491
+Average No Retrieval F1 Score: 0.265
+Average Recall: 0.578
+Iteration:  360
+Time: 12.210
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.264
+Average Recall: 0.576
+Iteration:  361
+Time: 9.766
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.263
+Average Recall: 0.575
+Iteration:  362
+Time: 3.598
+Average F1 Score: 0.489
+Average No Retrieval F1 Score: 0.263
+Average Recall: 0.574
+Iteration:  363
+Time: 3.460
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.262
+Average Recall: 0.574
+Iteration:  364
+Time: 11.092
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.261
+Average Recall: 0.574
+Iteration:  365
+Time: 10.498
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.261
+Average Recall: 0.572
+Iteration:  366
+Time: 4.109
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.263
+Average Recall: 0.572
+Iteration:  367
+Time: 3.722
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.265
+Average Recall: 0.573
+Iteration:  368
+Time: 10.361
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.264
+Average Recall: 0.572
+Iteration:  369
+Time: 3.168
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.263
+Average Recall: 0.573
+Iteration:  370
+Time: 9.798
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.262
+Average Recall: 0.571
+Iteration:  371
+Time: 11.602
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.264
+Average Recall: 0.571
+Iteration:  372
+Time: 9.464
+Average F1 Score: 0.482
+Average No Retrieval F1 Score: 0.264
+Average Recall: 0.571
+Iteration:  373
+Time: 3.509
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.264
+Average Recall: 0.572
+Iteration:  374
+Time: 3.703
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.266
+Average Recall: 0.572
+Iteration:  375
+Time: 3.584
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.268
+Average Recall: 0.572
+Iteration:  376
+Time: 11.206
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.267
+Average Recall: 0.572
+Iteration:  377
+Time: 7.238
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.267
+Average Recall: 0.571
+Iteration:  378
+Time: 10.285
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.267
+Average Recall: 0.571
+Iteration:  379
+Time: 10.523
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.268
+Average Recall: 0.572
+Iteration:  380
+Time: 3.609
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.572
+Iteration:  381
+Time: 6.992
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.573
+Iteration:  382
+Time: 10.116
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.572
+Iteration:  383
+Time: 3.436
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.572
+Iteration:  384
+Time: 3.839
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.573
+Iteration:  385
+Time: 3.725
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.574
+Iteration:  386
+Time: 10.680
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.572
+Iteration:  387
+Time: 9.686
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.573
+Iteration:  388
+Time: 4.275
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.575
+Iteration:  389
+Time: 7.570
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.269
+Average Recall: 0.574
+Iteration:  390
+Time: 10.637
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.268
+Average Recall: 0.574
+Iteration:  391
+Time: 10.367
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.574
+Iteration:  392
+Time: 3.223
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.575
+Iteration:  393
+Time: 7.147
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.576
+Iteration:  394
+Time: 10.586
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.577
+Iteration:  395
+Time: 11.454
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.576
+Iteration:  396
+Time: 8.350
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.577
+Iteration:  397
+Time: 10.961
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.575
+Iteration:  398
+Time: 4.608
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.576
+Iteration:  399
+Time: 3.583
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.576
+Iteration:  400
+Time: 3.707
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.577
+Iteration:  401
+Time: 10.773
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.577
+Iteration:  402
+Time: 10.387
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.576
+Iteration:  403
+Time: 10.724
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.575
+Iteration:  404
+Time: 10.573
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.574
+Iteration:  405
+Time: 10.651
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.575
+Iteration:  406
+Time: 4.047
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.575
+Iteration:  407
+Time: 9.695
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.576
+Iteration:  408
+Time: 11.550
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.274
+Average Recall: 0.577
+Iteration:  409
+Time: 7.256
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.578
+Iteration:  410
+Time: 11.783
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.578
+Iteration:  411
+Time: 10.114
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.578
+Iteration:  412
+Time: 4.323
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.577
+Iteration:  413
+Time: 10.488
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.577
+Iteration:  414
+Time: 7.051
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.577
+Iteration:  415
+Time: 11.188
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.577
+Iteration:  416
+Time: 3.751
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.578
+Iteration:  417
+Time: 3.723
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.577
+Iteration:  418
+Time: 3.646
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.576
+Iteration:  419
+Time: 10.463
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.270
+Average Recall: 0.576
+Iteration:  420
+Time: 3.724
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.272
+Average Recall: 0.576
+Iteration:  421
+Time: 3.893
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.271
+Average Recall: 0.576
+Iteration:  422
+Time: 3.560
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.273
+Average Recall: 0.576
+Iteration:  423
+Time: 3.477
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.577
+Iteration:  424
+Time: 3.374
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.578
+Iteration:  425
+Time: 3.721
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.577
+Iteration:  426
+Time: 10.829
+Average F1 Score: 0.488
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.577
+Iteration:  427
+Time: 11.330
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.275
+Average Recall: 0.576
+Iteration:  428
+Time: 3.494
+Average F1 Score: 0.487
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.576
+Iteration:  429
+Time: 9.921
+Average F1 Score: 0.486
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.576
+Iteration:  430
+Time: 9.589
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.574
+Iteration:  431
+Time: 10.789
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.573
+Iteration:  432
+Time: 3.629
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.574
+Iteration:  433
+Time: 12.808
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.573
+Iteration:  434
+Time: 7.414
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.574
+Iteration:  435
+Time: 3.537
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.278
+Average Recall: 0.573
+Iteration:  436
+Time: 11.700
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.572
+Iteration:  437
+Time: 9.848
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.572
+Iteration:  438
+Time: 6.818
+Average F1 Score: 0.483
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.573
+Iteration:  439
+Time: 3.308
+Average F1 Score: 0.484
+Average No Retrieval F1 Score: 0.276
+Average Recall: 0.573
+Iteration:  440
+Time: 3.648
+Average F1 Score: 0.485
+Average No Retrieval F1 Score: 0.277
+Average Recall: 0.573
+Iteration:  441
+Time: 10.711
+Average F1 Score: 0.485

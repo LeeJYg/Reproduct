@@ -110,10 +110,12 @@ class PositionwiseFeedforward(nn.Module):
         return out
 
 class EncoderLayer(nn.Module):
-    def __init__(self, embed_size, heads, ff_dim, dropout):
+    def __init__(self, embed_size, heads, ff_dim, dropout, is_cross=False):
         super(EncoderLayer, self).__init__()
+        self.is_cross = is_cross
         self.self_attention = SelfAttention(embed_size, heads)
-        self.cross_attention = SelfAttention(embed_size, heads) # 예시로 SelfAttention 사용, 실제로는 CrossAttention 필요
+        if is_cross:
+            self.cross_attention = SelfAttention(embed_size, heads) # 예시로 SelfAttention 사용, 실제로는 CrossAttention 필요
         self.norm1 = nn.LayerNorm(embed_size)
         self.norm2 = nn.LayerNorm(embed_size)
         self.norm3 = nn.LayerNorm(embed_size)
@@ -141,9 +143,10 @@ class EncoderLayer(nn.Module):
 
         x = self.dropout(self.norm1(self_att + query))
 
-        cross_att = self.cross_attention(x, x, query, mask)
-        cross_att = cross_att.reshape(query.shape[0], query.shape[1], query.shape[2], -1)
-        x = self.dropout(self.norm2(cross_att + x))
+        if self.is_cross:
+            cross_att = self.cross_attention(x, x, query, mask)
+            cross_att = cross_att.reshape(query.shape[0], query.shape[1], query.shape[2], -1)
+            x = self.dropout(self.norm2(cross_att + x))
 
         # Feedforward
         forward = self.feed_forward(x)
@@ -178,7 +181,7 @@ class DecoderLayer(nn.Module):
         return out
     
 class Encoder(nn.Module):
-    def __init__(self, src_vocab_size, embed_size, num_layers, heads, device, ff_dim, dropout, max_length):
+    def __init__(self, src_vocab_size, embed_size, num_layers, heads, device, ff_dim, dropout, max_length, enc_cross_layer):
         super(Encoder, self).__init__()
         self.embed_size = embed_size
         self.device = device
@@ -186,7 +189,7 @@ class Encoder(nn.Module):
         self.position_embedding = RotaryEmbedding(embed_size)
 
         self.layers = nn.ModuleList(
-            [EncoderLayer(embed_size, heads, ff_dim, dropout) for _ in range(num_layers)]
+            [EncoderLayer(embed_size, heads, ff_dim, dropout, True if i in enc_cross_layer else False) for i in range(num_layers)]
         )
 
         self.dropout = nn.Dropout(dropout)
@@ -210,7 +213,7 @@ class Decoder(nn.Module):
     def __init__(self, trg_vocab_size, embed_size, num_layers, cross_attention_layers, heads, device, ff_dim, dropout, max_length):
         super(Decoder, self).__init__()
         self.device = device
-        self.word_embedding = nn.Embedding(trg_vocab_size, embed_size)
+        self.word_embedding = nn.Embedding(trg_vocab_size, embed_size, device=self.device)
         self.position_embedding = RotaryEmbedding(embed_size)
         self.layers = nn.ModuleList()
 
@@ -226,7 +229,9 @@ class Decoder(nn.Module):
         seq_len = chunk_num * chunk_len
         
         positions = self.position_embedding(seq_len, device=self.device)
+        positions = positions.to(self.device)
         positions = positions.view(1, chunk_num, chunk_len, -1)
+        
         x = self.dropout(self.word_embedding(x) + positions)
         #x는 1, 32, 512, 256 
 
@@ -236,10 +241,11 @@ class Decoder(nn.Module):
         out = self.fc_out(x)
 
         return out
+    
 class RETRO(nn.Module):
-    def __init__(self, pad_id=0, num_token=97, embed_size=256, enc_num_layers=6, dec_num_layers=12, decoder_cross_attention_layer=(1, 3, 6, 9), forward_expansion=4, heads=8, dropout=0.1, device="cuda", max_length=512):
+    def __init__(self, pad_id=0, num_token=97, embed_size=256, enc_num_layers=6, dec_num_layers=12, decoder_cross_attention_layer=(3, 6, 9), enc_cross_layer = (0,), forward_expansion=4, heads=8, dropout=0.1, device="cuda", max_length=512):
         super(RETRO, self).__init__()
-        self.encoder = Encoder(num_token, embed_size, enc_num_layers, heads, device, forward_expansion * embed_size, dropout, max_length)
+        self.encoder = Encoder(num_token, embed_size, enc_num_layers, heads, device, forward_expansion * embed_size, dropout, max_length, enc_cross_layer=enc_cross_layer)
         self.decoder = Decoder(num_token, embed_size, dec_num_layers, decoder_cross_attention_layer, heads, device, forward_expansion * embed_size, dropout, max_length)
         self.src_pad_idx = pad_id
         self.trg_pad_idx = pad_id

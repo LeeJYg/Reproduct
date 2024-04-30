@@ -31,7 +31,7 @@ def build_database(chunk_len: int = 16, batch_size: int = 64, d_emb: int = 768, 
     n_chunks = len(chunks)
 
     # Initialize BERT to get $\text{B\small{ERT}}(N)$
-    bert = BERTChunkEmbeddings(torch.device('cuda:0'))
+    bert = BERTChunkEmbeddings(torch.device('cuda:2'))
 
     # Get chunk embeddings by processing `batch_size` number of chunks on each iteration
     chunk_emb = []
@@ -113,7 +113,7 @@ def build_dataset(chunk_len: int = 16, chunks_per_sample: int = 16, skip_range: 
         neighbor_offsets = index(chunks, chunk_offsets)
 
         # Get neighbor texts. The neighbor length is twice the `chunk_len`
-        neighbors = [[text[j: j + chunk_len * 2] for j in n_off] for n_off in neighbor_offsets]
+        neighbors = [[text[j: j + chunk_len] for j in n_off] for n_off in neighbor_offsets]
 
         # Add to list of samples
         samples.append((sample[:-1], sample[1:], neighbors))

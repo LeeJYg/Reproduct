@@ -12,14 +12,13 @@ def prompt_concat(question_text, demonstration, mode, separator='\n\n', instance
     if mode == 'recitation':
         for question, answer in zip(question_text, demonstration):
             prompt += "Question: " + question + separator
-            prompt += "The answer to the above question can be found in the following Wikipedia page, section, and paragraph or table: " + separator
-            prompt += "Answer: " + answer + instance_separator
+            prompt += "The answer to the above question can be found in the following Wikipedia page, section, and paragraph or table." + separator
+            prompt += "Answer: " + answer[:350] + instance_separator
     elif mode == 'answer':
         for question, answer in zip(question_text, demonstration):
             prompt += "Question: " + question + separator
             #prompt += "The answer to the above question can be found in the following Wikipedia page, section, and paragraph or table: " + separator
-            prompt += "Answer: " + ' '.join(answer) + instance_separator
-        prompt += "Based on the above paragraph, could you answer the following (probably) relevant questions?"
+            prompt += "Therefore, the short answer is " + ' '.join(answer) + instance_separator
             
     return prompt
 
@@ -40,10 +39,12 @@ def print_keys(dictionary):
             print("list")
             print("---------------------") 
 
-def prompt_geneartor(mode, shot=2, data_dir='/mnt/sdc/jylee'):
-    dataset = load_dataset('natural_questions', cache_dir=data_dir, trust_remote_code=True)
+def prompt_geneartor(mode, shot, separator='\n\n', instance_separator='\n\n\n', dataset=None):
+    if dataset is None:
+        dataset = load_dataset('natural_questions')
+        training_data = dataset['train']
     
-    training_data = dataset['train']
+    training_data = dataset
     
     selected_data = []
     counter = 0
@@ -87,7 +88,7 @@ def prompt_geneartor(mode, shot=2, data_dir='/mnt/sdc/jylee'):
         else:
             short_answer_texts = ["No short answers provided."]
 
-    return prompt_concat(question, demonstration, mode)
+    return prompt_concat(question, demonstration, mode, separator, instance_separator)
         
 if __name__ == '__main__':
     prompt_geneartor('recitation', 5)

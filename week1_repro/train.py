@@ -1,8 +1,11 @@
 import torch
 import torch.optim as optim
+
 from torch.utils.data import DataLoader
+from torch.utils.tensorboard import SummaryWriter
 from functools import partial
 from Layer import RETRO
+from transformers import get_linear_schedule_with_warmup
 
 import os
 import json
@@ -103,13 +106,21 @@ char_vocab = {'a': 1,
   '~': 94,
   '\n': 95,
   ' ' : 96,
+  #'<sos>': 97,
+  #'<eos>': 98,
   '<pad>': 0}
 char_to_index = dict((char, index) for index, char in enumerate(char_vocab))
+index_to_char = dict((index, char) for index, char in enumerate(char_vocab))
 
-# 데이터셋 로딩과 전처리 함수 (가상의 함수로 대체)
+loss_file = 'training_loss_records.txt'
+
+def write_loss_to_file(filename, epoch, loss, mode='train'):
+    with open(filename, 'a') as file:
+        file.write(f'{mode} Epoch: {epoch+1}, Loss: {loss:.4f}\n')
+        
 def load_and_preprocess_data():
     #data_path = os.path.join(os.getcwd(), '/home/jylee/week1_repro/data/retro_train_dataset.json')
-    data_path = '/home/jylee/week1_repro/data/retro_train_dataset.json'
+    data_path = '/home/jylee/Reproduct/week1_repro/data/retro_train_dataset.json'
     with open(data_path, 'r') as f:
         dataset = json.load(f)
 
@@ -154,15 +165,17 @@ def custom_collate_fn(batch, device):
     return srcs_padded, trgs_padded, retrieved_passages_tensor
 
 
-def train(model, train_loader, optimizer, criterion, device):
+def train(model, train_loader, optimizer, criterion, device, epoch, writer, scheduler):
     model.train()
     total_loss = 0
-    for src, trg, retrieved_passages in train_loader:
+    for idx, (src, trg, retrieved_passages) in enumerate(train_loader):
         src, trg, retrieved_passages = src.to(device), trg.to(device), retrieved_passages.to(device)
         #src는 32, 512/ trg도 32, 512/ retrieve_passages는 32, 32, 2, 32
+   
+        batch_size = src.shape[0]
         
-        src = src.view(32, 32,-1)
-        trg = trg.view(32, 32,-1)
+        src = src.view(batch_size, 32,-1)
+        trg = trg.view(batch_size, 32,-1)
         
         optimizer.zero_grad()
         output = model(src, trg, retrieved_passages)
@@ -173,20 +186,28 @@ def train(model, train_loader, optimizer, criterion, device):
         
         loss = criterion(output, trg)
         loss.backward()
+        
         optimizer.step()
+        scheduler.step()
         
         total_loss += loss.item()
-    return total_loss / len(train_loader)
+        
+    avg_loss = total_loss / len(train_loader)
+    writer.add_scalar('Loss/train', loss.item(), epoch * len(train_loader) + idx)
+    write_loss_to_file(loss_file, epoch, avg_loss, mode='train')
 
-def evaluate(model, val_loader, criterion, device):
+    return avg_loss
+
+def evaluate(model, val_loader, criterion, device, epoch, writer):
     model.eval()
     total_loss = 0
     with torch.no_grad():
-        for src, trg, retrieved_passages in val_loader:
+        for idx, (src, trg, retrieved_passages) in enumerate(val_loader):
             src, trg, retrieved_passages = src.to(device), trg.to(device), retrieved_passages.to(device)
+            batch_size = src.shape[0]
 
-            src = src.view(32, 32,-1)
-            trg = trg.view(32, 32,-1)
+            src = src.view(batch_size, 32,-1)
+            trg = trg.view(batch_size, 32,-1)
 
             output = model(src, trg, retrieved_passages)
             output_dim = output.shape[-1]
@@ -196,33 +217,70 @@ def evaluate(model, val_loader, criterion, device):
             
             loss = criterion(output, trg)
             total_loss += loss.item()
-    return total_loss / len(val_loader)
+        
+        avg_loss = total_loss / len(val_loader)    
+        writer.add_scalar('Loss/val', loss.item(), epoch * len(val_loader) + idx)
+        write_loss_to_file(loss_file, epoch, avg_loss, mode='train')
+        
+    return avg_loss
 
 def main():
     # 하이퍼파라미터 설정
-    NUM_EPOCHS = 10
-    LEARNING_RATE = 0.001
-    BATCH_SIZE = 32
-    DEVICE = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+    BATCH_SIZE = 64
+    INIT_LR = 1e-7
+    MAX_LR = 2e-4
+    MIN_LR = 2e-5
+    WEIGHT_DECAY = 0.1
+    WARMUP_STEPS = 750
+    NUM_STEP = 35000
+    
+    DEVICE = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+    
+    writer = SummaryWriter()
     
     model = RETRO()
     model.to(DEVICE)
     
-    optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    optimizer = optim.AdamW(model.parameters(), lr=1e-7, eps=1e-8, weight_decay=WEIGHT_DECAY)
+    
+    def lr_lambda(current_step: int):
+        if current_step < WARMUP_STEPS:
+            # 0 스텝에서 INIT_LR에서 시작하여 WARMUP_STEPS에서 MAX_LR에 도달하도록 선형 증가
+            return (MAX_LR - INIT_LR) / WARMUP_STEPS * current_step + INIT_LR
+        elif current_step < NUM_STEP:
+            # WARMUP_STEPS에서 TOTAL_STEPS까지 MAX_LR에서 MIN_LR로 선형 감소
+            return (MIN_LR - MAX_LR) / (NUM_STEP - WARMUP_STEPS) * (current_step - WARMUP_STEPS) + MAX_LR
+        else:
+            # TOTAL_STEPS 이후에는 MIN_LR 유지
+            return MIN_LR
+    
+    scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
+    
     criterion = torch.nn.CrossEntropyLoss(ignore_index=0)
 
     train_dataset, val_dataset= load_and_preprocess_data()
+    steps_per_epoch = len(train_dataset) // BATCH_SIZE
+    NUM_EPOCHS = NUM_STEP // steps_per_epoch
+    
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, collate_fn=partial(custom_collate_fn, device=DEVICE), drop_last=True)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, collate_fn=partial(custom_collate_fn, device=DEVICE), drop_last=True)
 
     for epoch in range(NUM_EPOCHS):
-        train_loss = train(model, train_loader, optimizer, criterion, DEVICE)
-        val_loss = evaluate(model, val_loader, criterion, DEVICE)
+        print("Training start!")
+        print("Epoch: ", epoch+1, "/", NUM_EPOCHS)
+        train_loss = train(model, train_loader, optimizer, criterion, DEVICE, epoch, writer, scheduler)
+        scheduler.step()
+        
+        val_loss = evaluate(model, val_loader, criterion, DEVICE, epoch, writer)
 
         print(f'Epoch: {epoch+1}, Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}')
+        
+        if epoch % 20 == 0:
+            torch.save(model.state_dict(), f'retro_model_epoch_{epoch}.pth')
 
     # 모델 저장
     torch.save(model.state_dict(), 'retro_model.pth')
+    writer.close()
 
     print("Training complete.")
     

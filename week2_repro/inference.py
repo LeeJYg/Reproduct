@@ -3,10 +3,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModel
 #from contriever.src.contriever import Contriever
 
 import jsonlines
-import random
 import sys
 import torch
 import spacy
+import random
+
 import time
 
 special_tokens = {
@@ -29,16 +30,17 @@ special_tokens = {
 }
 
 n_docs = 3
-jsonl_file_path = '/home/jylee/Data/triviaqa_test_w_gs.jsonl'
+jsonl_file_path = '/home/jylee/Reproduct/week2_repro/triviaqa_test_w_gs.jsonl'
 #https://drive.google.com/file/d/1TLKhWjez63H4uBtgCxyoyJsZi-IMgnDb/view
+
+torch.cuda.empty_cache()
+device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
 model_name = "selfrag/selfrag_llama2_7b"
 
-torch.cuda.empty_cache()
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
+
 
 sampling_params = {
     "do_sample": False,
@@ -75,7 +77,7 @@ def find_related_passages(query, jsonl_file_path, top_k=1, timeout=30):
 
             text = obj["text"].lower()
             title = obj.get("title", "").lower()
-            score = sum(text.count(keyword) for keyword in query_keywords)  # 키워드 등장 빈도 점수
+            score = sum(text.count(keyword) for keyword in query_keywords)
 
             if score > 0:
                 related_passages.append((title, obj["text"], score))
@@ -84,7 +86,7 @@ def find_related_passages(query, jsonl_file_path, top_k=1, timeout=30):
     return related_passages[:top_k]
 
 
-def inference(w_re1=1, w_sup=1, w_use=0.5):
+def inference(element, w_re1=1, w_sup=1, w_use=0.5):        
     retrieval_tokens_names = ["[No Retrieval]", "[Retrieval]", "[Continue to Use Evidence]"]
     ret_tokens = {token: tokenizer.convert_tokens_to_ids(token) for token in retrieval_tokens_names}
     
@@ -95,18 +97,10 @@ def inference(w_re1=1, w_sup=1, w_use=0.5):
     sup_tokens = {token: tokenizer.convert_tokens_to_ids(token) for token in support_tokens_names}
     
     rel_tokens_names = ["[Irrelevant]", "[Relevant]"]
-    rel_tokens = {token: tokenizer.convert_tokens_to_ids(token) for token in rel_tokens_names}
+    rel_tokens = {token: tokenizer.convert_tokens_to_ids(token) for token in rel_tokens_names}    
     
-    
-    data = []
-    with jsonlines.open(jsonl_file_path) as reader:
-        for text in reader:
-           data.append(text) 
-    
-    random_element = random.choice(data)      
-    
-    query = random_element['question']
-    evidence = random_element['ctxs'] 
+    query = element['question']
+    evidence = element['ctxs'] 
     for evi in evidence:
         if len(evi['text']) > sampling_params["max_length"]:
             evi['text'] = evi['text'][:sampling_params["max_length"]]
@@ -118,6 +112,7 @@ def inference(w_re1=1, w_sup=1, w_use=0.5):
     probs = [torch.softmax(score, dim=-1) for score in output.scores]
 
     threshold = 0.2
+    beam_size = 2
     
     score_dict = {}
     for token, id in ret_tokens.items():
@@ -127,85 +122,111 @@ def inference(w_re1=1, w_sup=1, w_use=0.5):
         score_dict[token] = float(prob)
     do_retrieve= score_dict["[Retrieval]"] / (score_dict["[Retrieval]"] + score_dict["[No Retrieval]"]) > threshold
     
-    if do_retrieve:
-        augmented_prompt = [format_prompt(query, paragraph=evi) for evi in evidence]
-        outputs = []
-        for prompt in augmented_prompt:
-            prompt = tokenizer.encode(prompt, return_tensors="pt").to(device)
-            outputs.append(model.generate(prompt, **sampling_params, output_scores=True, return_dict_in_generate=True))
-        
-        relevance_score_dict = {}
-        sup_score_dict = {}
-        use_score_dict = {}
-        final_score_dict = {}
-        
-        for output_index, output in enumerate(outputs):
+    outputs_list = []
+    scores_list = []
+    
+    
+    for i in range(beam_size):
+        if do_retrieve:
+            augmented_prompt = [format_prompt(query, paragraph=evi) for evi in evidence]
+            outputs = []
+            for prompt in augmented_prompt:
+                prompt = tokenizer.encode(prompt, return_tensors="pt").to(device)
+                outputs.append(model.generate(prompt, **sampling_params, output_scores=True, return_dict_in_generate=True))
             
-            relevance_score_dict.setdefault(output_index, {})
-            sup_score_dict.setdefault(output_index, {})
-            use_score_dict.setdefault(output_index, {})
+            relevance_score_dict = {}
+            sup_score_dict = {}
+            use_score_dict = {}
+            final_score_dict = {}
             
-            probs = [torch.softmax(score, dim=-1) for score in output.scores]
-            token_id = probs_to_token_id(probs)
-            seq_score = seq_prob_sum(probs)
-            
-            for token, id in rel_tokens.items():
-                if id not in probs[0]:
-                    prob = torch.exp(torch.tensor(-100.0))
+            for output_index, output in enumerate(outputs):
+                
+                relevance_score_dict.setdefault(output_index, {})
+                sup_score_dict.setdefault(output_index, {})
+                use_score_dict.setdefault(output_index, {})
+                
+                probs = [torch.softmax(score, dim=-1) for score in output.scores]
+                token_id = probs_to_token_id(probs)
+                seq_score = seq_prob_sum(probs)
+                
+                for token, id in rel_tokens.items():
+                    if id not in probs[0]:
+                        prob = torch.exp(torch.tensor(-100.0))
+                    else:
+                        prob = probs[0][0][id]
+                    relevance_score_dict[output_index][token] = float(prob)
+                relevance_score = relevance_score_dict[output_index]["[Relevant]"] / (relevance_score_dict[output_index]["[Relevant]"] + relevance_score_dict[output_index]["[Irrelevant]"])
+                
+                sup_token_idx = []
+                for tok_idx, tok in enumerate(token_id):
+                    if tok in sup_tokens.values():
+                        sup_token_idx.append(tok_idx)
+                        break
+                if len(sup_token_idx) > 0:
+                    idx = sup_token_idx[0]
+                    for token, id in sup_tokens.items():
+                        prob = probs[idx][0][id]
+                        sup_score_dict[output_index][token] = float(prob)
+                        
+                if len(sup_score_dict[output_index]) == 3:
+                    total_sup_prob = (sup_score_dict[output_index]["[Fully supported]"] + sup_score_dict[output_index]["[Partially supported]"] + sup_score_dict[output_index]["[No support / Contradictory]"])
+                    sup_score = (sup_score_dict[output_index]["[Fully supported]"] / total_sup_prob) + 0.5 * (sup_score_dict[output_index]["[Partially supported]"] / total_sup_prob)
                 else:
-                    prob = probs[0][0][id]
-                relevance_score_dict[output_index][token] = float(prob)
-            relevance_score = relevance_score_dict[output_index]["[Relevant]"] / (relevance_score_dict[output_index]["[Relevant]"] + relevance_score_dict[output_index]["[Irrelevant]"])
-            
-            sup_token_idx = []
-            for tok_idx, tok in enumerate(token_id):
-                if tok in sup_tokens.values():
-                    sup_token_idx.append(tok_idx)
-                    break
-            if len(sup_token_idx) > 0:
-                idx = sup_token_idx[0]
-                for token, id in sup_tokens.items():
-                    prob = probs[idx][0][id]
-                    sup_score_dict[output_index][token] = float(prob)
-                    
-            if len(sup_score_dict[output_index]) == 3:
-                total_sup_prob = (sup_score_dict[output_index]["[Fully supported]"] + sup_score_dict[output_index]["[Partially supported]"] + sup_score_dict[output_index]["[No support / Contradictory]"])
-                sup_score = (sup_score_dict[output_index]["[Fully supported]"] / total_sup_prob) + 0.5 * (sup_score_dict[output_index]["[Partially supported]"] / total_sup_prob)
-            else:
-                sup_score = 0.0
-            
-            use_token_idx = []
-            for tok_idx, tok in enumerate(token_id):
-                if tok in use_tokens.values():
-                    use_token_idx.append(tok_idx)
-                    break
-            if len(use_token_idx) > 0:
-                idx = use_token_idx[0]
-                for token, id in use_tokens.items():
-                    prob = probs[idx][0][id]
-                    use_score_dict[output_index][token] = float(prob)
-                    
-            if len(use_score_dict[output_index]) == 5:
-                total_use_prob = (use_score_dict[output_index]["[Utility:1]"] + use_score_dict[output_index]["[Utility:2]"] + use_score_dict[output_index]["[Utility:3]"] + use_score_dict[output_index]["[Utility:4]"] + use_score_dict[output_index]["[Utility:5]"])
-                weight = [-1, -0.5, 0, 0.5, 1]
-                use_score = 0
-                for i in range(5):
-                    use_score += weight[i] * use_score_dict[output_index]["[Utility:{}]".format(i+1)] / total_use_prob
-            else:
-                use_score = 0.0    
-            
-            final_score_dict[output_index] = torch.exp(seq_score) + w_re1 * relevance_score + w_sup * sup_score + w_use * use_score
+                    sup_score = 0.0
+                
+                use_token_idx = []
+                for tok_idx, tok in enumerate(token_id):
+                    if tok in use_tokens.values():
+                        use_token_idx.append(tok_idx)
+                        break
+                if len(use_token_idx) > 0:
+                    idx = use_token_idx[0]
+                    for token, id in use_tokens.items():
+                        prob = probs[idx][0][id]
+                        use_score_dict[output_index][token] = float(prob)
+                        
+                if len(use_score_dict[output_index]) == 5:
+                    total_use_prob = (use_score_dict[output_index]["[Utility:1]"] + use_score_dict[output_index]["[Utility:2]"] + use_score_dict[output_index]["[Utility:3]"] + use_score_dict[output_index]["[Utility:4]"] + use_score_dict[output_index]["[Utility:5]"])
+                    weight = [-1, -0.5, 0, 0.5, 1]
+                    use_score = 0
+                    for i in range(5):
+                        use_score += weight[i] * use_score_dict[output_index]["[Utility:{}]".format(i+1)] / total_use_prob
+                else:
+                    use_score = 0.0    
+                
+                final_score_dict[output_index] = torch.exp(seq_score) + w_re1 * relevance_score + w_sup * sup_score + w_use * use_score
 
-        max_index = max(final_score_dict, key=final_score_dict.get)
-        output = outputs[max_index]
-
-        print(tokenizer.decode(output.sequences[0], skip_special_tokens=False))
-     
-    else:
-        prompt = tokenizer.encode(input_prompt + "[No Retrieval]", return_tensors="pt").to(device)
-        output = model.generate(prompt, **sampling_params, output_scores=True, return_dict_in_generate=True)
-
-        print(tokenizer.decode(output.sequences[0], skip_special_tokens=False))
+            max_index = max(final_score_dict, key=final_score_dict.get)
+            output = outputs[max_index]
+            score = final_score_dict[max_index]
+            
+            outputs_list.append(output)
+            scores_list.append(score)            
+        
+        else:
+            prompt = tokenizer.encode(input_prompt + "[No Retrieval]", return_tensors="pt").to(device)
+            output = model.generate(prompt, **sampling_params, output_scores=True, return_dict_in_generate=True)
+            
+            outputs_list.append(output)
+            scores_list.append(-float('inf'))
+                
+    max_score_index = max(range(beam_size), key=lambda i: scores_list[i])
+    max_ouptut = outputs_list[max_score_index]
+    
+    do_ret = 'Retrieved' if do_retrieve else 'Not Retrieved'
+    
+    return tokenizer.decode(max_ouptut.sequences[0], skip_special_tokens=False), do_ret
         
 if __name__ == "__main__":
-    inference()
+    jsonl_file_path = '/home/jylee/Reproduct/week2_repro/triviaqa_test_w_gs.jsonl'
+    
+    data = []
+    with jsonlines.open(jsonl_file_path) as reader:
+        for text in reader:
+           data.append(text)    
+    start_time = time.time()
+    ret = inference(data[0])
+    end_time = time.time()
+    execution_time = end_time - start_time
+    print("Inference took {:.2f} seconds.".format(execution_time))
+    print(ret)

@@ -1,26 +1,29 @@
 import sys
-import openai
 
 from prompt_generator import prompt_geneartor
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, T5ForConditionalGeneration
+from datasets import load_dataset
 
 import torch
 
 torch.cuda.empty_cache()
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
+device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-def inference_iter(prompt, tokenizer, model):
-    inputs = tokenizer(prompt, return_tensors="pt")
+separator=';;'
+instance_separator=';;;'
 
-    generate_ids = model.generate(inputs.input_ids, max_length=2048, no_repeat_ngram_size=2)
+#tokenizer = AutoTokenizer.from_pretrained("google/ul2")
+#model = AutoModel.from_pretrained("google/ul2", device_map="auto")
+#model = T5ForConditionalGeneration.from_pretrained("google/ul2", low_cpu_mem_usage=True, torch_dtype=torch.bfloat16)                                                                                                  
+#dataset = load_dataset('natural_questions')
+
+def inference_iter(prompt, tokenizer, model, device):
+    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+
+    generate_ids = model.generate(inputs.input_ids, max_length=2048, temperature=0.7, do_sample=True)
     output = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
-
-    output_text = output[len(prompt):]
-    output_text_index = output_text.find('\n\n')
-    output_text = output_text[:output_text_index].strip()
-
-    return output_text
-
+    
+    return output
 
 def get_majority_voting(multiple_outputs, post_process_fn=None):
   majority_voting = {}
@@ -45,37 +48,44 @@ def get_majority_voting(multiple_outputs, post_process_fn=None):
   return best_ans
 
 if __name__ == "__main__":
-    tokenizer = AutoTokenizer.from_pretrained("facebook/opt-30b")
-    model = AutoModelForCausalLM.from_pretrained("facebook/opt-30b")
-    
-    mode_recite = 'recitation'
-    mode_answer = 'answer'
-    recitation_shot = 5
-    answer_shot = 64
-    
-    self_consistency = 3
-    
-    question = "what does the word china mean in chinese?"    
+  tokenizer = AutoTokenizer.from_pretrained("google/ul2")
+  #model = AutoModel.from_pretrained("google/ul2", device_map="auto")
+  model = T5ForConditionalGeneration.from_pretrained("google/ul2", low_cpu_mem_usage=True, torch_dtype=torch.bfloat16)                                                                                                  
+  dataset = load_dataset('natural_questions')
+  mode_recite = 'recitation'
+  mode_answer = 'answer'
+  recitation_shot = 5
+  answer_shot = 5
+  
+  self_consistency = 20
+  
+  total_data_num = len(dataset['valid'])
+  
+  for iter, data in enumerate(dataset['validation']):
+    question = data['question']['text']
+    answers = [" ".join([data['document']['tokens']['token'][i] for i in range(sa['start_token'][0], sa['end_token'][0]) if not data['document']['tokens']['is_html'][i]]) for sa in data['annotations']['short_answers']]
     
     prompt_recitation = prompt_geneartor(mode_recite, recitation_shot)
-    prompt_recitation += "Question: " + question + '\n\n'
-    prompt_recitation += "The answer to the above question can be found in the following Wikipedia page, section, and paragraph or table: \n\n"
+    prompt_recitation += "Question: " + question + separator
+    prompt_recitation += "The answer to the above question can be found in the following Wikipedia page, section, and paragraph or table: " + separator
     prompt_recitation += "Answer: "
 
     generated_text = []
     
-    print(prompt_recitation)
+    #print(prompt_recitation)
     
     for i in range(self_consistency):
-        generated_text.append(inference_iter(prompt_recitation, tokenizer, model))
+        generated_text.append(inference_iter(prompt_recitation, tokenizer, model, device))
     
     outputs = []
     for text in generated_text:
-        print("Generated Answer: ", text)
-        prompt_answer = text + '\n\n' + "Based on the above paragraph, could you answer the following (probably) relevant questions?\n\n" + "Question: " + question + '\n\n'
-        prompt_answer += "Answer: "
-        outputs.append(inference_iter(prompt_answer, tokenizer, model))
+        #print("Generated Answer: ", text)
+        prompt_answer = prompt_geneartor(mode_answer, answer_shot)
+        prompt_answer = "Recitation: " + text + separator + "Based on the above paragraph, could you answer the following (probably) relevant questions?" + separator + "Question: " + question + separator
+        prompt_answer += "Therefore, the short answer is "
+        outputs.append(inference_iter(prompt_answer, tokenizer, model, device))
     
     final_output = get_majority_voting(outputs)
     
-    print(final_output)
+    print("Itereation: ", iter, final_output)
+    sys.exit()
